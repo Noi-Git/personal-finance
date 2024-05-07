@@ -11,7 +11,14 @@ const Nav = ({ userName }) => {
         </NavLink>
         {/* if there is user -- show form */}
         {userName && (
-          <Form method='post' action='/logout'>
+          <Form
+            method='post'
+            action='/logout'
+            onSubmit={(event) => {
+              if (!confirm('Delete user and all data?')) event.preventDefault()
+              //send confirm message to prevent accidentally delete the account
+            }}
+          >
             <button type='submit' className='btn btn--warning'>
               <span>Delete User</span>
             </button>
