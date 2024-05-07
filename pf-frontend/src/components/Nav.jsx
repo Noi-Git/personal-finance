@@ -1,6 +1,7 @@
 import { Form, NavLink } from 'react-router-dom'
 import { TrashIcon } from '@heroicons/react/24/solid'
 import logomark from '../assets/logomark.svg'
+// eslint-disable-next-line react/prop-types
 const Nav = ({ userName }) => {
   return (
     <>
