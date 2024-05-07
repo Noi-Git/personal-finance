@@ -18,6 +18,10 @@ const router = createBrowserRouter([
         loader: dashboardLoader,
         errorElement: <Error />, //show error when go to route that does not exist
       },
+      {
+        path: 'logout',
+        element: <p>logged out!</p>,
+      },
     ],
   },
 ])
