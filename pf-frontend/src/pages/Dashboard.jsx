@@ -13,7 +13,7 @@ const Dashboard = () => {
   //the dashboardLoader function is connected to loader inside a specific path
   const { userName } = useLoaderData()
 
-  return <div>Get userName form localStorage {userName}</div>
+  return <div>Get {userName} form local storage </div>
 }
 
 export default Dashboard
