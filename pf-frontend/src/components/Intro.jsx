@@ -20,7 +20,7 @@ export const Intro = () => {
           <Form method='post'>
             <input
               type='text'
-              name='username'
+              name='userName'
               required
               placeholder='What is your name?'
               aria-label='Your Name'
