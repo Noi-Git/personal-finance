@@ -1,5 +1,6 @@
 import { useLoaderData } from 'react-router-dom'
 import { fetchData } from '../helpers'
+import { Intro } from '../components/Intro'
 
 //loader
 // eslint-disable-next-line react-refresh/only-export-components
@@ -13,7 +14,7 @@ const Dashboard = () => {
   //the dashboardLoader function is connected to loader inside a specific path
   const { userName } = useLoaderData()
 
-  return <div>Get {userName} form local storage </div>
+  return <>{userName ? <p>{userName}</p> : <Intro />}</>
 }
 
 export default Dashboard
