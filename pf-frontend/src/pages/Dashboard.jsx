@@ -18,17 +18,18 @@ export function dashboardLoader() {
 // eslint-disable-next-line react-refresh/only-export-components
 export async function dashboardAction({ request }) {
   const data = await request.formData()
-  // console.log({ data, request })
-  // const userName = data.get('userName')
-  // console.log(userName)
-  const formData = Object.fromEntries(data)
+  const { _action, ...values } = Object.fromEntries(data)
   // console.log(formData)
-  try {
-    // throw new Error('You are done!') //will be use with custom error message -- for testing error page
-    localStorage.setItem('userName', JSON.stringify(formData.userName))
-    return toast.success(`Welcome, ${formData.userName}`)
-  } catch (error) {
-    throw new Error('There was a problem creating your account.')
+  // console.log('_action', _action)
+
+  if (_action === 'newUser') {
+    try {
+      // throw new Error('You are done!') //will be use with custom error message -- for testing error page
+      localStorage.setItem('userName', JSON.stringify(values.userName))
+      return toast.success(`Welcome, ${values.userName}`)
+    } catch (error) {
+      throw new Error('There was a problem creating your account.')
+    }
   }
 }
 
