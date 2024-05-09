@@ -6,8 +6,11 @@ import { toast } from 'react-toastify'
 //loader
 // eslint-disable-next-line react-refresh/only-export-components
 export function dashboardLoader() {
+  //look in localStorage if there are keys below
   const userName = fetchData('userName')
-  return { userName }
+  const budgets = fetchData('budgets')
+
+  return { userName, budgets }
 }
 
 // action
@@ -31,11 +34,19 @@ export async function dashboardAction({ request }) {
 const Dashboard = () => {
   //allow to access the dashboardLoader function above
   //the dashboardLoader function is connected to loader inside a specific path
-  const { userName } = useLoaderData()
+  const { userName, budgets } = useLoaderData()
   return (
     <>
-      {userName ? <p>{userName}</p> : <Intro />}
-      {/* <Intro /> */}
+      {userName ? (
+        <>
+          <h1>
+            Welcom back, <span className='accent'>{userName}</span>
+          </h1>
+          <div className='grid-sm'>{/* {budgets ? () : ()} */}</div>
+        </>
+      ) : (
+        <Intro />
+      )}
     </>
   )
 }
