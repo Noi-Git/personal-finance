@@ -2,6 +2,7 @@ import { useLoaderData } from 'react-router-dom'
 import { fetchData } from '../helpers'
 import { Intro } from '../components/Intro'
 import { toast } from 'react-toastify'
+import AddBudgetForm from '../components/AddBudgetForm'
 
 //loader
 // eslint-disable-next-line react-refresh/only-export-components
@@ -40,9 +41,16 @@ const Dashboard = () => {
       {userName ? (
         <>
           <h1>
-            Welcom back, <span className='accent'>{userName}</span>
+            Welcome back, <span className='accent'>{userName}</span>
           </h1>
-          <div className='grid-sm'>{/* {budgets ? () : ()} */}</div>
+          <div className='grid-sm'>
+            {/* {budgets ? () : ()} */}
+            <div className='grid-lg'>
+              <div className='flex-lg'>
+                <AddBudgetForm />
+              </div>
+            </div>
+          </div>
         </>
       ) : (
         <Intro />

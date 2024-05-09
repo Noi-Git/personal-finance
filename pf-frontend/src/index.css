@@ -200,6 +200,10 @@ p {
   opacity: 0.5;
 }
 
+.btn-mt {
+  margin-top: 40px;
+}
+
 /* utility layouts */
 
 .flex-lg {
