@@ -1,8 +1,9 @@
 import { useLoaderData } from 'react-router-dom'
-import { getAllMatchingItems } from '../helpers'
+import { deleteItem, getAllMatchingItems } from '../helpers'
 import BudgetItem from '../components/BudgetItem'
 import AddExpenseForm from '../components/AddExpenseForm'
 import { Table } from '../components/Table'
+import { toast } from 'react-toastify'
 
 //Loader
 export async function budgetLoader({ params }) {
@@ -23,6 +24,25 @@ export async function budgetLoader({ params }) {
   }
 
   return { budget, expenses }
+}
+
+//create action
+export async function budgetAction({ request }) {
+  const data = await request.formData()
+  const { _action, ...values } = Object.fromEntries(data)
+
+  if (_action === 'deleteExpense') {
+    try {
+      deleteItem({
+        key: 'expenses',
+        id: values.expenseId,
+      })
+      // console.log('values.newExpense', values)
+      return toast.success(`Expense deleted!`)
+    } catch (error) {
+      throw new Error('There was a problem deleting your expense.')
+    }
+  }
 }
 
 const BudgetPage = () => {
