@@ -70,19 +70,6 @@ export async function dashboardAction({ request }) {
     }
   }
 
-  // if (_action === 'deleteExpense') {
-  //   try {
-  //     deleteItem({
-  //       key: 'expenses',
-  //       id: values.expenseId,
-  //     })
-  //     // console.log('values.newExpense', values)
-  //     return toast.success(`Expense deleted!`)
-  //   } catch (error) {
-  //     throw new Error('There was a problem deleting your expense.')
-  //   }
-  // }
-
   if (_action === 'deleteExpense') {
     try {
       deleteItem({
