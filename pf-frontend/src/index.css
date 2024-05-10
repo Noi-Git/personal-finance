@@ -200,6 +200,10 @@ p {
   opacity: 0.5;
 }
 
+.btn-mt {
+  margin-top: 40px;
+}
+
 /* utility layouts */
 
 .flex-lg {
@@ -599,4 +603,9 @@ table a {
 /* toast */
 .Toastify__toast-body {
   font-size: var(--fs-300);
+}
+
+.align-left {
+  text-align: left;
+  padding-left: 80px;
 }
