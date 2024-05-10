@@ -8,7 +8,7 @@ export const Table = ({ expenses }) => {
         <table>
           <thead>
             <tr>
-              {['Name', 'Amount', 'Date'].map((i, index) => (
+              {['Name', 'Amount', 'Date', 'Budget Type'].map((i, index) => (
                 <th key={index}>{i}</th>
               ))}
             </tr>
