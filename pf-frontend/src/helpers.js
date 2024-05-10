@@ -43,6 +43,10 @@ export const formatCurrency = (amt) => {
   })
 }
 
+//Format date to local string
+export const formatDateToLocalString = (epoch) =>
+  new Date(epoch).toLocaleDateString()
+
 export const createBudget = ({ name, amount }) => {
   const newItem = {
     id: crypto.randomUUID(),

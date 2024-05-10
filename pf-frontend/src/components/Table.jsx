@@ -1,3 +1,5 @@
+import ExpenseItem from './ExpenseItem'
+
 // eslint-disable-next-line react/prop-types
 export const Table = ({ expenses }) => {
   return (
@@ -5,15 +7,18 @@ export const Table = ({ expenses }) => {
       <div className='table'>
         <table>
           <thead>
-            <tr></tr>
+            <tr>
+              {['Name', 'Amount', 'Date'].map((i, index) => (
+                <th key={index}>{i}</th>
+              ))}
+            </tr>
           </thead>
 
           <tbody>
             {/* eslint-disable-next-line react/prop-types */}
             {expenses.map((expense) => (
               <tr key={expense.id}>
-                {expense.name}
-                {/* <ExpenseItem/> */}
+                <ExpenseItem expense={expense} />
               </tr>
             ))}
           </tbody>
