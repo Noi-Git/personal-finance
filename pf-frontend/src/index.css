@@ -604,3 +604,8 @@ table a {
 .Toastify__toast-body {
   font-size: var(--fs-300);
 }
+
+.align-left {
+  text-align: left;
+  padding-left: 80px;
+}
