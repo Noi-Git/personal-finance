@@ -14,7 +14,7 @@ const ExpenseItem = ({ expense }) => {
     // eslint-disable-next-line react/prop-types
     value: expense.budgetId,
   })[0]
-  console.log('budget--', budget)
+  // console.log('budget--', budget)
   // console.log('expense', expense)
   return (
     <>

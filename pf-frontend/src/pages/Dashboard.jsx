@@ -70,6 +70,19 @@ export async function dashboardAction({ request }) {
     }
   }
 
+  // if (_action === 'deleteExpense') {
+  //   try {
+  //     deleteItem({
+  //       key: 'expenses',
+  //       id: values.expenseId,
+  //     })
+  //     // console.log('values.newExpense', values)
+  //     return toast.success(`Expense deleted!`)
+  //   } catch (error) {
+  //     throw new Error('There was a problem deleting your expense.')
+  //   }
+  // }
+
   if (_action === 'deleteExpense') {
     try {
       deleteItem({
@@ -108,6 +121,11 @@ const Dashboard = () => {
                     <BudgetItem key={budget.id} budget={budget} />
                   ))}
                 </div>
+                {expenses.length === 0 && (
+                  <div className='grid-md'>
+                    <h2>No expense!</h2>
+                  </div>
+                )}
                 {expenses && expenses.length > 0 && (
                   <div className='grid-md'>
                     <h2>Recent Expenses</h2>
