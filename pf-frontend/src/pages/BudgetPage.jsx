@@ -1,4 +1,7 @@
+import { useLoaderData } from 'react-router-dom'
 import { getAllMatchingItems } from '../helpers'
+import BudgetItem from '../components/BudgetItem'
+import AddExpenseForm from '../components/AddExpenseForm'
 
 //Loader
 export async function budgetLoader({ params }) {
@@ -7,9 +10,29 @@ export async function budgetLoader({ params }) {
     key: 'id',
     value: params.id,
   })[0]
+  if (!budget) {
+    throw new Error(`The budget you's trying to find doesn't exist`)
+  }
+
+  return { budget }
 }
+
 const BudgetPage = () => {
-  return <div>BudgetPage</div>
+  const { budget } = useLoaderData()
+
+  return (
+    <>
+      <div className='grid-lg'>
+        <h1 className='h2'>
+          <span className='accent'>{budget.name}</span> Overview
+        </h1>
+        <div className='flex-lg'>
+          <BudgetItem budget={budget} />
+          <AddExpenseForm budgets={[budget]} />
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default BudgetPage

@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Dashboard, { dashboardAction, dashboardLoader } from './pages/Dashboard'
-import BudgetPage from './pages/BudgetPage'
+import BudgetPage, { budgetLoader } from './pages/BudgetPage'
 import ExpensesPage, {
   expensesAction,
   expensesLoader,
@@ -30,14 +30,16 @@ const router = createBrowserRouter([
       {
         path: 'budget/:id',
         element: <BudgetPage />,
-        // loader: expensesLoader,
+        loader: budgetLoader,
         // action: expensesAction,
+        errorElement: <Error />, //show error when go to route that does not exist
       },
       {
         path: 'expenses',
         element: <ExpensesPage />,
         loader: expensesLoader,
         action: expensesAction,
+        errorElement: <Error />, //show error when go to route that does not exist
       },
       {
         path: 'logout',
