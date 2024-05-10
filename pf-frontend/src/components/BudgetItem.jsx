@@ -5,12 +5,18 @@ import {
 } from '../helpers'
 
 const BudgetItem = ({ budget }) => {
+  // eslint-disable-next-line react/prop-types
   const { id, name, amount, color } = budget
   const spent = calculateSpentByBudget(id)
 
   return (
     <>
-      <div className='budget'>
+      <div
+        className='budget'
+        style={{
+          '--accent': color,
+        }}
+      >
         <div className='progress-text'>
           <h3>{name}</h3>
           <p>{formatCurrency(amount)} Budgeted</p>
