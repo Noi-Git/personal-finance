@@ -22,7 +22,7 @@ export const calculateSpentByBudget = (budgetId) => {
     if (expense.budgetId !== budgetId) return acc
 
     //add the current amount to my total
-    return (acc += expense.amoun)
+    return (acc += expense.amount)
   }, 0)
   return budgetSpent
 }
