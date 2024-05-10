@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import AddBudgetForm from '../components/AddBudgetForm'
 import AddExpenseForm from '../components/AddExpenseForm'
 import BudgetItem from '../components/BudgetItem'
+import { Table } from '../components/Table'
 
 //loader
 // eslint-disable-next-line react-refresh/only-export-components
@@ -12,8 +13,9 @@ export function dashboardLoader() {
   //look in localStorage if there are keys below
   const userName = fetchData('userName')
   const budgets = fetchData('budgets')
+  const expenses = fetchData('expenses')
 
-  return { userName, budgets }
+  return { userName, budgets, expenses }
 }
 
 // action
@@ -66,7 +68,7 @@ export async function dashboardAction({ request }) {
 const Dashboard = () => {
   //allow to access the dashboardLoader function above
   //the dashboardLoader function is connected to loader inside a specific path
-  const { userName, budgets } = useLoaderData()
+  const { userName, budgets, expenses } = useLoaderData()
   return (
     <>
       {userName ? (
@@ -87,6 +89,16 @@ const Dashboard = () => {
                     <BudgetItem key={budget.id} budget={budget} />
                   ))}
                 </div>
+                {expenses && expenses.length > 0 && (
+                  <div className='grid-md'>
+                    <h2>Recent Expenses</h2>
+                    <Table
+                      expenses={expenses.sort(
+                        (a, b) => b.createdAt - a.createdAt
+                      )}
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               <div className='grid-sm'>
