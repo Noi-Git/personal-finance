@@ -6,7 +6,7 @@ import {
 } from '../helpers'
 import { TrashIcon } from '@heroicons/react/24/solid'
 // eslint-disable-next-line react/prop-types
-const ExpenseItem = ({ expense }) => {
+const ExpenseItem = ({ expense, showBudget }) => {
   const fetcher = useFetcher()
   const budget = getAllMatchingItems({
     category: 'budgets',
@@ -24,17 +24,19 @@ const ExpenseItem = ({ expense }) => {
       <td>{formatCurrency(expense.amount)}</td>
       {/* eslint-disable-next-line react/prop-types */}
       <td>{formatDateToLocalString(expense.createdAt)}</td>
-      {/* eslint-disable-next-line react/prop-types */}
-      <td>
-        <Link
-          to={`/budget/${budget.id}`}
-          style={{
-            '--accent': budget.color,
-          }}
-        >
-          {budget.name}
-        </Link>
-      </td>
+      {showBudget && (
+        <td>
+          <Link
+            to={`/budget/${budget.id}`}
+            style={{
+              '--accent': budget.color,
+            }}
+          >
+            {budget.name}
+          </Link>
+        </td>
+      )}
+
       <td>
         <fetcher.Form method='post'>
           <input type='hidden' name='_action' value='deleteExpense' />
