@@ -4,6 +4,7 @@ import {
   formatPercentage,
 } from '../helpers'
 
+// eslint-disable-next-line react/prop-types
 const BudgetItem = ({ budget }) => {
   // eslint-disable-next-line react/prop-types
   const { id, name, amount, color } = budget

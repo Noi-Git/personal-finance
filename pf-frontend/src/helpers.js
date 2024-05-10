@@ -1,7 +1,7 @@
 // Local storage
 
 export const wait = () =>
-  new Promise((res) => setTimeout(res, Math.random() * 3000))
+  new Promise((res) => setTimeout(res, Math.random() * 1000))
 const generateRandomColor = () => {
   const existingBudgetLength = fetchData('budgets')?.length ?? 0
   return `${existingBudgetLength * 34} 65% 50%`
@@ -16,10 +16,11 @@ export const deleteItem = ({ key }) => {
 }
 
 export const calculateSpentByBudget = (budgetId) => {
-  const expreses = fetchData('expenses' ?? [])
-  const budgetSpent = expreses.reduce((acc, expense) => {
+  const expenses = fetchData('expenses') ?? []
+  const budgetSpent = expenses.reduce((acc, expense) => {
     //check if expense.id === budgetId I passed in
     if (expense.budgetId !== budgetId) return acc
+    // console.log('expenses-reduce', expenses)
 
     //add the current amount to my total
     return (acc += expense.amount)
