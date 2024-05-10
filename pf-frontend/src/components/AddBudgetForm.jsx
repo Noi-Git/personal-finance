@@ -32,7 +32,7 @@ const AddBudgetForm = () => {
               required
             />
           </div>
-          <div className='grid-sx'>
+          <div className='grid-xs'>
             <label htmlFor='newBudgetAmount'>Amount</label>
             <input
               type='number'
@@ -47,7 +47,7 @@ const AddBudgetForm = () => {
           <input type='hidden' name='_action' value='createBudget' />
           <button
             type='submit'
-            className='btn btn--dark btn-mt'
+            className='btn btn--dark'
             disabled={isSubmitting}
           >
             {isSubmitting ? (
