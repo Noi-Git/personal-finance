@@ -30,12 +30,12 @@ export async function dashboardAction({ request }) {
   await wait()
   const data = await request.formData()
   const { _action, ...values } = Object.fromEntries(data)
-  // console.log(formData)
+
+  // console.log(data)
   // console.log('_action', _action)
 
   if (_action === 'newUser') {
     try {
-      // throw new Error('You are done!') //will be use with custom error message -- for testing error page
       localStorage.setItem('userName', JSON.stringify(values.userName))
       return toast.success(`Welcome, ${values.userName}`)
     } catch (error) {
@@ -108,11 +108,7 @@ const Dashboard = () => {
                     <BudgetItem key={budget.id} budget={budget} />
                   ))}
                 </div>
-                {expenses.length === 0 && (
-                  <div className='grid-md'>
-                    <h2>No expense!</h2>
-                  </div>
-                )}
+
                 {expenses && expenses.length > 0 && (
                   <div className='grid-md'>
                     <h2>Recent Expenses</h2>

@@ -10,6 +10,7 @@ import ExpensesPage, {
 import Error from './pages/Error'
 import Main, { mainLoader } from './layouts/Main'
 import { logoutAction } from './actions/logout'
+import { deleteBudget } from './actions/deleteBudget'
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,13 @@ const router = createBrowserRouter([
         element: <BudgetPage />,
         loader: budgetLoader,
         action: budgetAction,
-        errorElement: <Error />, //show error when go to route that does not exist
+        errorElement: <Error />,
+        children: [
+          {
+            path: 'delete',
+            action: deleteBudget,
+          },
+        ], //show error when go to route that does not exist
       },
       {
         path: 'expenses',
