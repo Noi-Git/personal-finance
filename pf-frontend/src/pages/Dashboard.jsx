@@ -1,5 +1,11 @@
 import { Link, useLoaderData } from 'react-router-dom'
-import { createBudget, createExpense, fetchData, wait } from '../helpers'
+import {
+  createBudget,
+  createExpense,
+  deleteItem,
+  fetchData,
+  wait,
+} from '../helpers'
 import { Intro } from '../components/Intro'
 import { toast } from 'react-toastify'
 import AddBudgetForm from '../components/AddBudgetForm'
@@ -24,12 +30,12 @@ export async function dashboardAction({ request }) {
   await wait()
   const data = await request.formData()
   const { _action, ...values } = Object.fromEntries(data)
-  // console.log(formData)
+
+  // console.log(data)
   // console.log('_action', _action)
 
   if (_action === 'newUser') {
     try {
-      // throw new Error('You are done!') //will be use with custom error message -- for testing error page
       localStorage.setItem('userName', JSON.stringify(values.userName))
       return toast.success(`Welcome, ${values.userName}`)
     } catch (error) {
@@ -63,6 +69,19 @@ export async function dashboardAction({ request }) {
       throw new Error('There was a problem creating your expense.')
     }
   }
+
+  if (_action === 'deleteExpense') {
+    try {
+      deleteItem({
+        key: 'expenses',
+        id: values.expenseId,
+      })
+      // console.log('values.newExpense', values)
+      return toast.success(`Expense deleted!`)
+    } catch (error) {
+      throw new Error('There was a problem deleting your expense.')
+    }
+  }
 }
 
 const Dashboard = () => {
@@ -89,6 +108,7 @@ const Dashboard = () => {
                     <BudgetItem key={budget.id} budget={budget} />
                   ))}
                 </div>
+
                 {expenses && expenses.length > 0 && (
                   <div className='grid-md'>
                     <h2>Recent Expenses</h2>
